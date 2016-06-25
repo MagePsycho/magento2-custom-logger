@@ -19,19 +19,19 @@ class ControllerActionPredispatch implements ObserverInterface
      */
     protected $_logger;
 
-    /**
-     * @var CustomLoggerHelper $helper
-     */
-    protected $_helper;
+/**
+ * @var CustomLoggerHelper $helper
+ */
+protected $_helper;
 
 
-    public function __construct(
-        CustomLoggerHelper $helper,
-        \Psr\Log\LoggerInterface $logger
-    ) {
-        $this->_helper          = $helper;
-        $this->_logger          = $logger;
-    }
+public function __construct(
+    CustomLoggerHelper $helper,
+    \Psr\Log\LoggerInterface $logger
+) {
+    $this->_helper          = $helper;
+    $this->_logger          = $logger;
+}
 
     public function execute(Observer $observer)
     {
