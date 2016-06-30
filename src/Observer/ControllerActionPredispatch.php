@@ -3,7 +3,6 @@ namespace MagePsycho\CustomLogger\Observer;
 
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
-use MagePsycho\CustomLogger\Helper\Data as CustomLoggerHelper;
 
 /**
  * @category   MagePsycho
@@ -15,30 +14,20 @@ use MagePsycho\CustomLogger\Helper\Data as CustomLoggerHelper;
 class ControllerActionPredispatch implements ObserverInterface
 {
     /**
-     * @var \Psr\Log\LoggerInterface
+     * @var \MagePsycho\CustomLogger\Helper\Data
      */
-    protected $_logger;
-
-/**
- * @var CustomLoggerHelper $helper
- */
-protected $_helper;
+    protected $_customLoggerHelper;
 
 
-public function __construct(
-    CustomLoggerHelper $helper,
-    \Psr\Log\LoggerInterface $logger
-) {
-    $this->_helper          = $helper;
-    $this->_logger          = $logger;
-}
+    public function __construct(
+        \MagePsycho\CustomLogger\Helper\Data $customLoggerHelper
+    ) {
+        $this->_customLoggerHelper          = $customLoggerHelper;
+    }
 
     public function execute(Observer $observer)
     {
-        // This logs to the custom file
-        $this->_logger->debug(__METHOD__ . ' > Observer DI');
-
-        // But this doesn't (always logs to debug.log)
-        $this->_helper->log(__METHOD__ . ' > Helper DI', true);
+        $this->_customLoggerHelper->log(__METHOD__, true);
+        $this->_customLoggerHelper->log($observer->getEvent()->getName() . ' > Helper DI');
     }
 }

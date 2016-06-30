@@ -10,19 +10,21 @@ namespace MagePsycho\CustomLogger\Helper;
  */
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
-    protected $_logger;
+    protected $_customLogger;
 
     /**
+     * Data constructor.
+     *
      * @param \Magento\Framework\App\Helper\Context $context
-     * @param \Psr\Log\LoggerInterface $logger
+     * @param \Psr\Log\LoggerInterface $customLogger
      * @param \Magento\Framework\Module\ModuleListInterface $moduleList
      */
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
-        \Psr\Log\LoggerInterface $logger,
+        \Psr\Log\LoggerInterface $customLogger,
         \Magento\Framework\Module\ModuleListInterface $moduleList
     ) {
-        $this->_logger                  = $logger; //$context->getLogger();
+        $this->_customLogger            = $customLogger;
         $this->_moduleList              = $moduleList;
 
         parent::__construct($context);
@@ -36,14 +38,13 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function log($message, $useSeparator = false)
     {
-        //Even this is not working
-        #$this->_logger->pushHandler( new \Monolog\Handler\StreamHandler( '/var/log/magepsycho_customlogger.log') );
+        #$this->_customLogger->pushHandler( new \Monolog\Handler\StreamHandler( BP. '/var/log/magepsycho_customlogger.log') );
 
         if ($useSeparator) {
-            $this->_logger->addDebug(str_repeat('=', 100));
+            $this->_customLogger->addDebug(str_repeat('=', 100));
         }
 
-        $this->_logger->addDebug($message);
+        $this->_customLogger->addDebug($message);
     }
 
 }

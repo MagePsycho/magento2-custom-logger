@@ -52,7 +52,6 @@ Inject module helper via DI
 
 And call from any methods
 ```
+ $this->_helper->log(__METHOD__, true); //logging with separator
  $this->_helper->log('message to be logged...');
 ```
-
-(Currently it's not working as expected)

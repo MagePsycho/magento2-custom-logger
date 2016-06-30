@@ -18,17 +18,10 @@
         </arguments>
     </virtualType>
 
-    <!-- DI for Module Observer -->
-    <type name="MagePsycho\CustomLogger\Observer\ControllerActionPredispatch">
-        <arguments>
-            <argument name="logger" xsi:type="object">MagePsychoCustomLogger</argument>
-        </arguments>
-    </type>
-
     <!-- DI for Module Helper -->
     <type name="MagePsycho\CustomLogger\Helper\Data">
         <arguments>
-            <argument name="logger" xsi:type="object">MagePsychoCustomLogger</argument>
+            <argument name="customLogger" xsi:type="object">MagePsychoCustomLogger</argument>
         </arguments>
     </type>
 
