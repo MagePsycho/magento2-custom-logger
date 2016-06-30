@@ -35,23 +35,23 @@ php bin/magento setup:upgrade
 
 Usage
 -----
-Inject module helper via DI
+Inject module helper via Constructor DI
 ```
  /**
-  * @var \MagePsycho\CustomLogger\Helper
+  * @var \MagePsycho\CustomLogger\Helper\Data
   */
- protected $_helper;
+ protected $_customLoggerHelper;
  
  
  public function __construct(
-     \MagePsycho\CustomLogger\Helper $helper
+     \MagePsycho\CustomLogger\Helper\Data $customLoggerHelper
  ) {
-     $this->_helper          = $helper;
+     $this->_customLoggerHelper          = $customLoggerHelper;
  }
 ```
 
 And call from any methods
 ```
- $this->_helper->log(__METHOD__, true); //logging with separator
- $this->_helper->log('message to be logged...');
+ $this->_customLoggerHelper->log(__METHOD__, true); //logging with separator
+ $this->_customLoggerHelper->log('message to be logged...');
 ```
